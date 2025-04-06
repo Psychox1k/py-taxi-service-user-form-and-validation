@@ -4,6 +4,8 @@ from django import forms
 
 from taxi.models import Driver, Car
 
+from django.contrib.auth.forms import UserCreationForm
+
 
 class DriverLicenseUpdateForm(forms.ModelForm):
     class Meta:
@@ -21,7 +23,7 @@ class DriverLicenseUpdateForm(forms.ModelForm):
         return license_number
 
 
-class DriverCreateForm(forms.ModelForm):
+class DriverCreateForm(UserCreationForm):
     class Meta:
         model = Driver
         fields = "__all__"
@@ -42,7 +44,7 @@ class CarForm(forms.ModelForm):
         queryset=Driver.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
-        )
+    )
 
     class Meta:
         model = Car
